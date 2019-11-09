@@ -20,7 +20,7 @@ def callback(data):
 
 
 with server.Server as s:
-    s.connect(callback) # Wait for a connection
+    s.connect(callback) # Connects to client and call callback on new data
 ```
 
 ## Client
