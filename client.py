@@ -1,4 +1,5 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
+
 
 """
 Client side script to send data through socket.
@@ -9,13 +10,23 @@ import socket
 from server_config import *
 
 
-HOST = '10.10.16.151'  # The server's hostname or IP address
-PORT = 6969        # The port used by the server
 
-with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-    s.connect((HOST, PORT))
-    while True:
+class Client:
+    def __init__(self):
+        self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.sock.connect((HOST, PORT))
+
+
+    def __del__(self):
+        self.sock.close()
+
+
+    def send_data(self):
         data = input("Enter message to send or type 'exit': ")
         if data == "exit":
             break
-        s.sendall(data.encode())
+        self.send.sendall(data.encode())
+
+
+    def close(self):
+        self.sock.close()

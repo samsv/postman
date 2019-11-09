@@ -2,6 +2,6 @@
 Jetson-NUC communication parameters 
 """
 
-HOST = "10.10.16.151"
+HOST = "192.168.0.109"
 PORT = 6969
 BUFFER = 1024
