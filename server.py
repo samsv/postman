@@ -29,7 +29,7 @@ class Server:
 
 
     def __del__(self):
-        self.sock.close()
+        self.close()
 
 
     def _decode_data(self, data):
