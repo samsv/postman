@@ -7,11 +7,13 @@ The communication protocol is TCP IPv4.
 """
 
 import socket
+import struct
 from server_config import *
 
 
-
 class Client:
+
+
     def __init__(self):
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.sock.connect((HOST, PORT))
@@ -21,11 +23,27 @@ class Client:
         self.sock.close()
 
 
-    def send_data(self):
-        data = input("Enter message to send or type 'exit': ")
-        if data == "exit":
-            break
-        self.send.sendall(data.encode())
+    def _encode_data(self, data):
+        data_type = type(data)
+        if data_type == int:
+            return "i" + struct.pack("<i", data)
+        elif data_type == float:
+            return "f" + struct.pack("<f", data)
+
+
+    def send_data(self, data):
+        try:
+            if type(data) == str: raise TypeError
+            _ = iter(data)
+
+            data = b" ".join(self._encode_data(d) for d in data)
+        
+        except TypeError:
+            data = self._encode_data(data)
+
+        finally:
+            self.sock.sendall(data)
+
 
 
     def close(self):

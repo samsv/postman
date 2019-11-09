@@ -32,7 +32,7 @@ class Server:
         self.sock.close()
 
 
-    def _get_data(self, data):
+    def _decode_data(self, data):
         data_type = "<" + data[0]
         data = data[1:]
         return struct.unpack(data_type, data)[0] 
@@ -49,7 +49,7 @@ class Server:
             if not data:
                 break
             try:
-                data = [self._get_data(d) for d in data.split(b' ')]
+                data = [self._decode_data(d) for d in data.split(b" ")]
                 callback(data)
             except Exception as e:
                 print(e)    
