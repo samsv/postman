@@ -13,6 +13,7 @@ from server_config import *
 
 class Server:
 
+
     def __init__(self):
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.sock.bind((HOST, PORT))
