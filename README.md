@@ -19,7 +19,7 @@ def callback(data):
     ### Code ###
 
 
-with server.Server as s:
+with server.Server() as s:
     s.connect(callback) # Connects to client and call callback on new data
 ```
 
@@ -28,9 +28,8 @@ To use the client run
 ```python
 from postman import client
 
-c = client.Client()
-
-def data_generator():
-    data = ... ### Code creates data ###
-    c.send_data(data) # send data to host
+with client.Client() as c:
+    def data_generator():
+        data = ... ### Code creates data ###
+        c.send_data(data) # send data to host
 ```
