@@ -31,10 +31,6 @@ class Client:
         self.close()
 
 
-    def __del__(self):
-        self.sock.close()
-
-
     def _encode_data(self, data):
         data_type = type(data)
         if data_type == int:
