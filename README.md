@@ -33,3 +33,8 @@ with client.Client() as c:
         data = ... ### Code creates data ###
         c.send_data(data) # send data to host
 ```
+
+# Server Parameters
+The host name, as well as port number and buffer size, should be specified 
+inside the server\_config.py file. Both computers must have the same 
+server\_config files.
